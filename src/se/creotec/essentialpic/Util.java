@@ -1,6 +1,8 @@
 package se.creotec.essentialpic;
 
+import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 
 import java.util.logging.Logger;
 
@@ -19,5 +21,14 @@ public class Util {
 
     public static Logger getLogger() {
         return log;
+    }
+
+    public static void showAboutDialog() {
+        Alert aboutDialog = new Alert(Alert.AlertType.INFORMATION);
+        aboutDialog.setTitle("About");
+        aboutDialog.setHeaderText("About Essential Pic");
+        aboutDialog.setContentText("Developer:\nAlexander Håkansson");
+        aboutDialog.initModality(Modality.APPLICATION_MODAL);
+        aboutDialog.show();
     }
 }
