@@ -21,15 +21,15 @@
    <children>
       <MenuBar maxWidth="1.7976931348623157E308" GridPane.valignment="TOP">
         <menus>
-          <Menu text="File">
+          <Menu text="_File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Open picture...">
+              <MenuItem text="_Open picture...">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="O" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
                      </accelerator>
                   </MenuItem>
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" onAction="#onCloseMenuClicked" text="Close">
+                  <MenuItem onAction="#onCloseMenuClicked" text="_Close">
                      <accelerator>
                         <KeyCodeCombination alt="DOWN" code="F4" control="UP" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
@@ -39,9 +39,9 @@
                   <KeyCodeCombination alt="DOWN" code="F" control="UP" meta="UP" shift="UP" shortcut="UP" />
                </accelerator>
           </Menu>
-          <Menu text="Help">
+          <Menu text="_Help">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#onAboutMenuClicked" text="About">
+              <MenuItem onAction="#onAboutMenuClicked" text="_About">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="H" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
                      </accelerator>
