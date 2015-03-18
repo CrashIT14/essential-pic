@@ -8,11 +8,15 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+
+    private static final double WINDOW_WIDTH = 20 * Util.EM;
+    private static final double WINDOW_HEIGHT = 15 * Util.EM;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
         primaryStage.setTitle("Essential Pic");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT));
         primaryStage.show();
     }
 
