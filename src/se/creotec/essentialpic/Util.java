@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class Util {
 
     public static final double EM = Math.rint(new Text("").getLayoutBounds().getHeight());
-    private static final Logger log = Logger.getGlobal();
+    private static final Logger log = Logger.getLogger("EssentialPic");
 
     // Don't allow instantiation
     private Util() {}
