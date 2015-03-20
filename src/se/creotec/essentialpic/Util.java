@@ -3,6 +3,7 @@ package se.creotec.essentialpic;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.util.logging.Logger;
 
@@ -15,6 +16,7 @@ public class Util {
 
     public static final double EM = Math.rint(new Text("").getLayoutBounds().getHeight());
     private static final Logger log = Logger.getLogger("EssentialPic");
+    public static Stage MAIN_CONTEXT;
 
     // Don't allow instantiation
     private Util() {}
