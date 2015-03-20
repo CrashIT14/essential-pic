@@ -1,5 +1,7 @@
 package se.creotec.essentialpic;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -27,11 +29,30 @@ public class Controller implements Initializable {
     private MenuItem menuItemZoomIn;
     @FXML
     private MenuItem menuItemZoomOut;
+    @FXML
+    private MenuItem menuItemClose;
 
     private static final double ZOOM_FACTOR = 1.1;
     private static final double MIN_IMG_SIZE = Util.EM;
 
+    private BooleanProperty zoomingDisabled = new SimpleBooleanProperty(true);
+
     private File lastImagePath = new File(System.getProperty("user.home"));
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        menuItemZoomOut.disableProperty().bind(zoomingDisabled);
+        menuItemZoomIn.disableProperty().bind(zoomingDisabled);
+
+        if (imageMain.getImage() != null) {
+            imageMain.setFitWidth(imageMain.getImage().getWidth());
+            imageMain.setFitHeight(imageMain.getImage().getHeight());
+        }
+
+        // Show status message if there is no image
+        statusText.setVisible(imageMain.getImage() == null);
+    }
 
     @FXML
     private void onOpenMenuClicked() {
@@ -54,12 +75,23 @@ public class Controller implements Initializable {
     }
 
     @FXML
+    private void onCloseMenuClicked() {
+        imageMain.setImage(null);
+        imageMain.setFitWidth(0);
+        imageMain.setFitHeight(0);
+
+        statusText.setVisible(true);
+        menuItemClose.setDisable(true);
+        zoomingDisabled.setValue(true);
+    }
+
+    @FXML
     private void onAboutMenuClicked() {
         Util.showAboutDialog();
     }
 
     @FXML
-    private void onCloseMenuClicked() {
+    private void onExitMenuClicked() {
         Util.getLogger().info("Program closed");
         System.exit(0);
     }
@@ -88,31 +120,26 @@ public class Controller implements Initializable {
     }
 
     private void zoomInImage() {
-        imageMain.setFitWidth(imageMain.getFitWidth() * ZOOM_FACTOR);
-        imageMain.setFitHeight(imageMain.getFitHeight() * ZOOM_FACTOR);
+        if (!zoomingDisabled.get()) {
+            imageMain.setFitWidth(imageMain.getFitWidth() * ZOOM_FACTOR);
+            imageMain.setFitHeight(imageMain.getFitHeight() * ZOOM_FACTOR);
+        }
     }
 
     private void zoomOutImage() {
-        imageMain.setFitWidth(imageMain.getFitWidth() / ZOOM_FACTOR);
-        imageMain.setFitHeight(imageMain.getFitHeight() / ZOOM_FACTOR);
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        if (imageMain.getImage() != null) {
-            imageMain.setFitWidth(imageMain.getImage().getWidth());
-            imageMain.setFitHeight(imageMain.getImage().getHeight());
+        if (!zoomingDisabled.get()) {
+            imageMain.setFitWidth(imageMain.getFitWidth() / ZOOM_FACTOR);
+            imageMain.setFitHeight(imageMain.getFitHeight() / ZOOM_FACTOR);
         }
-
-        // Show status message if there is no image
-        statusText.setVisible(imageMain.getImage() == null);
     }
+
+
 
     private void newImageOpened() {
         //View updates
         statusText.setVisible(false);
-        menuItemZoomIn.setDisable(false);
-        menuItemZoomOut.setDisable(false);
+        menuItemClose.setDisable(false);
+        zoomingDisabled.setValue(false);
 
         // Set image zoom
         double imageWidth = imageMain.getImage().getWidth();
