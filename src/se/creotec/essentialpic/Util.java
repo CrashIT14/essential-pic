@@ -1,6 +1,7 @@
 package se.creotec.essentialpic;
 
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -17,6 +18,7 @@ public class Util {
     public static final double EM = Math.rint(new Text("").getLayoutBounds().getHeight());
     private static final Logger log = Logger.getLogger("EssentialPic");
     public static Stage MAIN_CONTEXT;
+    private static Image logo;
 
     // Don't allow instantiation
     private Util() {}
@@ -32,5 +34,12 @@ public class Util {
         aboutDialog.setContentText("Developer:\nAlexander Håkansson");
         aboutDialog.initModality(Modality.APPLICATION_MODAL);
         aboutDialog.show();
+    }
+
+    public static Image getLogo() {
+        if (logo == null) {
+            logo = new Image(Util.class.getResource("logo.png").toExternalForm());
+        }
+        return logo;
     }
 }
