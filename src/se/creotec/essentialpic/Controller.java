@@ -86,6 +86,11 @@ public class Controller implements Initializable {
     }
 
     @FXML
+    private void onFullscreenMenuClicked() {
+        Util.MAIN_CONTEXT.setFullScreen(!Util.MAIN_CONTEXT.isFullScreen());
+    }
+
+    @FXML
     private void onAboutMenuClicked() {
         Util.showAboutDialog();
     }

@@ -45,6 +45,12 @@
                         <KeyCodeCombination alt="UP" code="MINUS" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
                      </accelerator>
                   </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem onAction="#onFullscreenMenuClicked" text="_Fullscreen">
+                     <accelerator>
+                        <KeyCodeCombination alt="ANY" code="F11" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
               </items>
             </Menu>
           <Menu text="_Help">
