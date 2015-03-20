@@ -52,11 +52,8 @@
             <RowConstraints maxHeight="1.7976931348623157E308" />
          </rowConstraints>
          <children>
-            <ImageView fx:id="imageMain" cache="true" cacheHint="QUALITY" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-               <image>
-                  <Image url="@dancing-banana.gif" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="imageMain" cache="true" cacheHint="QUALITY" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <Label fx:id="statusText" text="Open an image (Ctrl + O) to get started" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </center>

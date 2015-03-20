@@ -2,6 +2,7 @@ package se.creotec.essentialpic;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
@@ -18,6 +19,8 @@ public class Controller implements Initializable {
     private ImageView imageMain;
     @FXML
     private Pane imageContainer;
+    @FXML
+    private Label statusText;
 
     private static final double ZOOM_FACTOR = 1.1;
     private static final double MIN_IMG_SIZE = Util.EM;
@@ -28,6 +31,7 @@ public class Controller implements Initializable {
     private void onOpenMenuClicked() {
         if (!lastImagePath.exists()) {
             lastImagePath = new File(System.getProperty("user.home"));
+            Util.getLogger().warning("Image path reset");
         }
 
         FileChooser fileChooser = new FileChooser();
@@ -39,18 +43,19 @@ public class Controller implements Initializable {
             lastImagePath = new File(image.getParent());
             String imagePath = image.toURI().toString();
             imageMain.setImage(new Image(imagePath));
+            newImageOpened();
         }
     }
 
     @FXML
     private void onAboutMenuClicked() {
-        Util.getLogger().finest("About dialog");
         Util.showAboutDialog();
     }
 
     @FXML
     private void onCloseMenuClicked() {
-        System.out.println("Close");
+        Util.getLogger().info("Program closed");
+        System.exit(0);
     }
 
     @FXML
@@ -72,6 +77,17 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if (imageMain.getImage() != null) {
+            imageMain.setFitWidth(imageMain.getImage().getWidth());
+            imageMain.setFitHeight(imageMain.getImage().getHeight());
+        }
+
+        // Show status message if there is no image
+        statusText.setVisible(imageMain.getImage() == null);
+    }
+
+    private void newImageOpened() {
+        statusText.setVisible(false);
         imageMain.setFitWidth(imageMain.getImage().getWidth());
         imageMain.setFitHeight(imageMain.getImage().getHeight());
     }
