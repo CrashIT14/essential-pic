@@ -9,7 +9,7 @@
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.creotec.essentialpic.Controller">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.creotec.essentialpic.Controller">
    <top>
       <MenuBar maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
         <menus>
@@ -21,16 +21,27 @@
                      </accelerator>
                   </MenuItem>
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem onAction="#onCloseMenuClicked" text="_Close">
+                  <MenuItem onAction="#onCloseMenuClicked" text="_Exit">
                      <accelerator>
                         <KeyCodeCombination alt="DOWN" code="F4" control="UP" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
             </items>
-               <accelerator>
-                  <KeyCodeCombination alt="DOWN" code="F" control="UP" meta="UP" shift="UP" shortcut="UP" />
-               </accelerator>
           </Menu>
+            <Menu text="_View">
+              <items>
+                <MenuItem fx:id="menuItemZoomIn" disable="true" onAction="#onZoomInMenuClicked" text="Zoom _In">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="PLUS" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="menuItemZoomOut" disable="true" onAction="#onZoomOutMenuClicked" text="Zoom _Out">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="MINUS" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                     </accelerator>
+                  </MenuItem>
+              </items>
+            </Menu>
           <Menu text="_Help">
             <items>
               <MenuItem onAction="#onAboutMenuClicked" text="_About">
