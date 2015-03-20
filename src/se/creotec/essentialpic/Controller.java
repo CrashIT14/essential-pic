@@ -17,14 +17,13 @@ public class Controller implements Initializable {
     @FXML
     private Pane imageContainer;
 
-    private final Rectangle imageClippingRect = new Rectangle(0, 0);
+    private static final double ZOOM_FACTOR = 1.1;
+    private static final double MIN_IMG_SIZE = Util.EM;
 
     @FXML
     private void onAboutMenuClicked() {
         Util.getLogger().finest("About dialog");
         Util.showAboutDialog();
-        System.out.println(imageContainer.getWidth());
-        System.out.println(imageMain.getFitWidth());
     }
 
     @FXML
@@ -34,30 +33,24 @@ public class Controller implements Initializable {
 
     @FXML
     private void onImageContainerScroll(ScrollEvent ev) {
+        // This handles zooming on the image.
+        // TODO: Improve zooming with viewport somehow
+        double currentWidth = imageMain.getFitWidth();
+        double currentHeight = imageMain.getFitHeight();
+
         if (ev.getDeltaY() < 0) {
-//            imageMain.setScaleX(imageMain.getScaleX() + 0.1);
-//            imageMain.setScaleY(imageMain.getScaleY() + 0.1);
-            imageMain.setFitWidth(imageMain.getFitWidth() * 1.1);
-            imageMain.setFitHeight(imageMain.getFitHeight() * 1.1);
-        } else {
-//            imageMain.setScaleX(imageMain.getScaleX() - 0.1);
-//            imageMain.setScaleY(imageMain.getScaleY() - 0.1);
-            imageMain.setFitWidth(imageMain.getFitWidth() / 1.1);
-            imageMain.setFitHeight(imageMain.getFitHeight() / 1.1);
+            imageMain.setFitWidth(currentWidth* ZOOM_FACTOR);
+            imageMain.setFitHeight(currentHeight * ZOOM_FACTOR);
+        } else if (currentWidth > MIN_IMG_SIZE || currentHeight > MIN_IMG_SIZE) {
+            imageMain.setFitWidth(currentWidth / ZOOM_FACTOR);
+            imageMain.setFitHeight(currentHeight / ZOOM_FACTOR);
         }
 
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        imageMain.fitWidthProperty().bind(imageContainer.widthProperty());
-//        imageMain.fitHeightProperty().bind(imageContainer.heightProperty());
-
-        imageClippingRect.widthProperty().bind(imageContainer.widthProperty());
-        imageClippingRect.heightProperty().bind(imageContainer.heightProperty());
-
         imageMain.setFitWidth(imageMain.getImage().getWidth());
         imageMain.setFitHeight(imageMain.getImage().getHeight());
-        imageMain.setClip(imageClippingRect);
     }
 }
