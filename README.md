@@ -2,7 +2,7 @@ Essential Pic
 ===========
 The minimal and efficient image viewer for all platforms. 
 
-Essential is a image viewer written in Java with the sole purpose of
+Essential Pic is an image viewer written in Java with the sole purpose of
 provding a lightweight and fast tool for viewing images that runs on
 all the major operating systems.
 
