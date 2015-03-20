@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.creotec.essentialpic.Controller">
+   <top>
+      <MenuBar maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu text="_File">
+            <items>
+              <MenuItem onAction="#onOpenMenuClicked" text="_Open picture...">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                     </accelerator>
+                  </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem onAction="#onCloseMenuClicked" text="_Close">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="F4" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+            </items>
+               <accelerator>
+                  <KeyCodeCombination alt="DOWN" code="F" control="UP" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator>
+          </Menu>
+          <Menu text="_Help">
+            <items>
+              <MenuItem onAction="#onAboutMenuClicked" text="_About">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="H" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                     </accelerator>
+                  </MenuItem>
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <GridPane fx:id="imageContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onScroll="#onImageContainerScroll" BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="1.7976931348623157E308" />
+         </rowConstraints>
+         <children>
+            <ImageView fx:id="imageMain" cache="true" cacheHint="QUALITY" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <Label fx:id="statusText" text="Open an image (Ctrl + O) to get started" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
