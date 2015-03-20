@@ -88,7 +88,19 @@ public class Controller implements Initializable {
 
     private void newImageOpened() {
         statusText.setVisible(false);
-        imageMain.setFitWidth(imageMain.getImage().getWidth());
-        imageMain.setFitHeight(imageMain.getImage().getHeight());
+        double imageWidth = imageMain.getImage().getWidth();
+        double imageHeight = imageMain.getImage().getHeight();
+        double maxWidth = imageContainer.getWidth();
+        double maxHeight = imageContainer.getHeight();
+        if (imageWidth > maxWidth || imageHeight > maxHeight) {
+            if (imageHeight > imageWidth) {
+                imageMain.setFitHeight(maxHeight - Util.EM  * 2);
+            } else {
+                imageMain.setFitWidth(maxWidth - Util.EM * 2);
+            }
+        } else {
+            imageMain.setFitWidth(imageWidth);
+            imageMain.setFitHeight(imageHeight);
+        }
     }
 }
